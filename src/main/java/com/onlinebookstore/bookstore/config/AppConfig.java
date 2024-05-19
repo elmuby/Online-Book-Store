@@ -49,7 +49,7 @@ public class AppConfig {
 				cfg.setAllowedOrigins(Arrays.asList("*"));
 //				setting allowed methods
 				cfg.setAllowedMethods(Collections.singletonList("*"));
-				
+//				to allow credentials
 				cfg.setAllowCredentials(true);
 			
 				cfg.setAllowedHeaders(Collections.singletonList("*"));
