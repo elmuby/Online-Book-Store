@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,8 +29,9 @@ public class User {
 		super();
 	}
 	
-	
-	public User(Long id, String fullname, String password, String email, List<Order> order, USER_ROLE role,
+
+
+	public User(Long id, String fullname, String password, String email, List<Order> order, Cart cart, USER_ROLE role,
 			List<Book> favorite, List<Address> addresses) {
 		super();
 		this.id = id;
@@ -37,6 +39,7 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.order = order;
+		this.cart = cart;
 		this.role = role;
 		this.favorite = favorite;
 		this.addresses = addresses;
@@ -56,15 +59,20 @@ public class User {
 	private String email;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Order> order;
 	
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
+	
+
+
 	private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 	
 	@ElementCollection
 	private List<Book> favorite;
 	
-	@OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+	@OneToMany(cascade	 = CascadeType.ALL , orphanRemoval = true)
 	private List<Address> addresses;
 
 	public Long getId() {
@@ -144,6 +152,15 @@ public class User {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 	
