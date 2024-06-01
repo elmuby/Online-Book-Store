@@ -2,7 +2,9 @@ package com.onlinebookstore.bookstore.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,11 @@ public class AdminBookController {
 		
 		
 		return new ResponseEntity<>(book, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestHeader("Authorization") String jwt, @RequestBody CreateBookRequest req){
+		return null;
 	}
 	
 
