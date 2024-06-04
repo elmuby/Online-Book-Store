@@ -2,6 +2,7 @@ package com.onlinebookstore.bookstore.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -58,7 +59,13 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book findBookById(Long bookId) throws Exception {
-		// TODO Auto-generated method stub
+		Optional<Book> book = bookRepository.findById(bookId);
+		if(book.isPresent()) {
+			return book.get();
+		}
+		else {
+			
+		}
 		return null;
 	}
 

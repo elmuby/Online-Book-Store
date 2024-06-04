@@ -50,8 +50,12 @@ public class AdminBookController {
 	}
 	
 	@DeleteMapping()
-	public void deleteBook(@PathVariable Long id) {
-		
+	public ResponseEntity<Void> deleteBook(@PathVariable Long id) throws Exception {
+		Book book = bookService.findBookById(id);
+		if(book.getId() != null) {
+			
+		}
+		return null;
 	}
 	
 
