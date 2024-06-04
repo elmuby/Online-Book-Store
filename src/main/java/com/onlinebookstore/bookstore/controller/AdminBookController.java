@@ -2,6 +2,7 @@ package com.onlinebookstore.bookstore.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,6 +47,11 @@ public class AdminBookController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestHeader("Authorization") String jwt, @RequestBody CreateBookRequest req){
 		return null;
+	}
+	
+	@DeleteMapping()
+	public void deleteBook(@PathVariable Long id) {
+		
 	}
 	
 
