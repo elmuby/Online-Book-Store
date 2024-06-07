@@ -41,14 +41,19 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void deleteBook(Long bookId) throws Exception {
-//		Book book = findBookById(bookId);
+		Book book = findBookById(bookId);
+		if(book.getId() != null) {
+			bookRepository.delete(book);
+		}else {
+			throw new Exception("Book not found");
+		}
+		
 
 	}
 
 	@Override
 	public List<Book> getAllBooks() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.findAll();
 	}
 
 	@Override
@@ -64,9 +69,8 @@ public class BookServiceImpl implements BookService {
 			return book.get();
 		}
 		else {
-			
+			throw new Exception("Book not found");
 		}
-		return null;
 	}
 
 	@Override

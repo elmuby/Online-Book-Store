@@ -49,13 +49,11 @@ public class AdminBookController {
 		return null;
 	}
 	
-	@DeleteMapping()
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteBook(@PathVariable Long id) throws Exception {
-		Book book = bookService.findBookById(id);
-		if(book.getId() != null) {
-			
-		}
-		return null;
+		bookService.deleteBook(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+
 	}
 	
 
